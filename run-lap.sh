@@ -18,7 +18,7 @@ else
 fi
 
 if [ $ALLOW_OVERRIDE == 'All' ]; then
-    /usr/bin/sed -i 's/AllowOverride\ None/AllowOverride\ All/g' /etc/httpd/conf/httpd.conf
+    /usr/bin/sed -i 's/AllowOverride\ None/AllowOverride\ All Options FollowSymLinks/g' /etc/httpd/conf/httpd.conf
 fi
 
 if [ $LOG_LEVEL != 'warn' ]; then

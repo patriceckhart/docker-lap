@@ -2,7 +2,7 @@ FROM centos:7
 MAINTAINER Patric Eckhart <mail@patriceckhart.com>
 LABEL Description="Linux + Apache 2.4 + PHP 5.4. CentOS 7 based. Includes .htaccess support and popular PHP5 features, including mail() function." \
 	License="Apache License 2.0" \
-	Usage="docker run -d -p [HOST PORT NUMBER]:80 -v [HOST WWW DOCUMENT ROOT]:/var/www/html patriceckhart/docker-lap" \
+	Usage="docker run --name yourproject -d --link mariadb1 --expose 80 -v /var/www --env VIRTUAL_HOST=dev.foo.local patriceckhart/docker-lap" \
 	Version="1.0"
 
 RUN yum -y update && yum clean all
@@ -31,7 +31,8 @@ RUN yum install -y \
 	php-xml \
 	php-xmlrpc \
 	ImageMagick \
-	ImageMagick-devel
+	ImageMagick-devel \
+	nano
 
 RUN sh -c 'printf "\n" | pecl install mongo imagick'
 RUN sh -c 'echo short_open_tag=On >> /etc/php.ini'
